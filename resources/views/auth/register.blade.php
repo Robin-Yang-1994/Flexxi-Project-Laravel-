@@ -1,13 +1,15 @@
 @extends('layouts.app')
 
+@extends('layouts.layout')
+
 @section('content')
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <img class="reglogo" src="{{asset('images/Clock.jpg')}}" height="500px" width="500px"/>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-heading">Register</div>
                 <div class="panel-body">
