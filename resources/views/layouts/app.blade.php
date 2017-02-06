@@ -26,9 +26,10 @@
     <div id="app">
         <nav class="navbar navbar-default navbar-static-top nvhead">
             <div class="container">
+
+                @if (Auth::guest()) {{--if user is guest, it will change the login, register and logo direct link--}}
                 <div class="navbar-header">
 
-                    <!-- Collapsed Hamburger -->
                     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
                         <span class="sr-only">Toggle Navigation</span>
                         <span class="icon-bar"></span>
@@ -36,7 +37,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                    <!-- Branding Image -->
+                    <!-- Logo name -->
                     <a class="navbar-brand" href="{{ url('/') }}">
                         {{ config('app.name', 'Flexxi') }}
                     </a>
@@ -50,18 +51,53 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
-                        @if (Auth::guest())
+
                             <li><a href="{{ url('/login') }}">Login</a></li>
                             <li><a href="{{ url('/') }}">Register</a></li>
                             <li><a href="{{ url('/help') }}">Help</a></li>
-                        @else
+                        @else {{--if user is logged in, it will remove the login, register and help and show user name--}}
+
+                            <div class="navbar-header">
+
+                                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                                    <span class="sr-only">Toggle Navigation</span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                    <span class="icon-bar"></span>
+                                </button>
+
+                                <!-- Logo name -->
+                                <a class="navbar-brand" href="{{ url('/home') }}">
+                                    {{ config('app.name', 'Flexxi') }}
+                                </a>
+                            </div>
+
+                            <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                                <!-- Left Side Of Navbar -->
+                                <ul class="nav navbar-nav">
+                                </ul>
+
+                                <!-- Right Side Of Navbar -->
+                                <ul class="nav navbar-nav navbar-right">
+
                             <li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->first_name }} <span class="caret"></span> {{--display users first name --}}
                                 </a>
 
                                 <ul class="dropdown-menu" role="menu">
                                     <li>
+
+                                        <a href="{{ url('/profile') }}"
+                                           onclick="event.preventDefault();
+                                                     document.getElementById('profile-form').submit();">
+                                            Profile
+                                        </a>
+
+                                        <form id="profile-form" action="{{ url('/profile') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+
                                         <a href="{{ url('/logout') }}"
                                             onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
