@@ -11,6 +11,9 @@
 
 <a href="{{ url('#') }}">Upload Timetable</a> <br>
 
-<a href="{{ url('#') }}">Settings</a>
+<form method="post" action="/profile">
+  {{csrf_field()}}
+<button>Settings</button>
+</form>
 
 @endsection

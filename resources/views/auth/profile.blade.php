@@ -8,17 +8,33 @@
             <div class="panel-heading">Update My Details</div>
             <div class="panel-body">
 
-                <form method="POST" action="/profile/update/{{$user->id}}">
-                    {{method_field('PATCH')}}
-                    {{csrf_field()}}
+                    <form action="/profile/upload/{{$user->id}}" method="POST" enctype="multipart/form-data">
+                      {{csrf_field()}}
+                    <div class="form-group">
+                        <label name="profile_picture" class="col-md-2 col-md-offset-1 control-label">Image</label>
 
-                    @if(count($errors))
-                        <ul>
-                            @foreach($errors->all() as $error)
-                            {{$error}}
-                                @endforeach
-                        </ul>
-                    @endif
+                        <div class="col-md-7">
+                            <img id="profile_picture" class="form-control" name="profile_picture"
+                             style="width:150px;height:150px;" src="/img/{{ $user->profile_picture }}">
+                            <input type="file" name="image">
+                            <input type="submit" value="Upload Image" name="submit">
+                            <br></br>
+                        </div>
+                    </div>
+                  </form>
+
+
+                  <!-- <form method="post" action="/profile/update/{{$user->id}}">
+
+                      {{csrf_field()}}
+
+                      @if(count($errors))
+                          <ul>
+                              @foreach($errors->all() as $error)
+                              {{$error}}
+                                  @endforeach
+                          </ul>
+                      @endif
 
                     <div class="form-group">
                         <label name="first_name" class="col-md-2 col-md-offset-1 control-label">First name</label>
@@ -45,19 +61,20 @@
                             <textarea id="email" class="form-control" name="email"required>{{$user->email}}</textarea>
                             <br>
                         </div>
-                    </div>
+                    </div> -->
 
 
-                    <div class="form-group">
+                    <!-- <div class="form-group">
                         <label name="password" class="col-md-2 col-md-offset-1 control-label">Password</label>
 
                         <div class="col-md-7">
                             <input id="password" type="password" class="form-control" name="password"required>
                             <br>
                         </div>
-                    </div>
+                    </div> -->
 
-                    <div class="form-group">
+
+                    <!-- <div class="form-group">
                         <label name="university" class="col-md-2 col-md-offset-1 control-label">University</label>
 
                         <div class="col-md-7">
@@ -75,6 +92,6 @@
             </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
 @endsection

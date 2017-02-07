@@ -112,7 +112,7 @@
                         </div>
 
                         <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
+                            <div class="col-md-6 col-md-offset-5">
                                 <button type="submit" class="btn btn-primary">
                                     Register
                                 </button>
@@ -125,4 +125,3 @@
     </div>
 </div>
 @endsection
-

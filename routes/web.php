@@ -1,7 +1,9 @@
 <?php
 
 
-Route::get('/', function () {return view('auth.register'); }); // default webpage
+Route::get('/', function () {
+  return view('auth.register');
+}); // default webpage
 
 Route::get('/help', 'HelpController@showHelp'); // website information
 
@@ -12,3 +14,5 @@ Route::get('/home', 'HomeController@index'); // default home page (dashboard vie
 Route::post('/profile', 'AccountController@showProfile'); // show profile information
 
 Route::post('/profile/update/{user}', 'AccountController@updateProfile'); //update profile information
+
+Route::post('/profile/upload/{user}', 'AccountController@uploadProfilePicture'); //update profile image
