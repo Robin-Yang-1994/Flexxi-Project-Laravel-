@@ -32,25 +32,21 @@ class AccountController extends Controller
     }
 
     public function uploadProfilePicture(Request $request, User $user){
-
-      //$user = new User(); // new object
-      $this->validate($request, ['image' => 'required']);
+      $this->validate($request, ['profile_picture' => 'required'
+    ]);
       // some validation on any empty fields
-      //$picture->profile_picture = $request->profile_picture; // defining filename as request name
-        if($request->hasFile('image')) { // check if the file from request exist
-        $file = Input::file('image'); // get file and define it as object
-        // $timestamp = str_replace([' ', ':'], '-', Carbon::now()->toDateTimeString());
-        // $name = $timestamp. '-' .$file->getClientOriginalName();
-        //$user->profile_picture = $file;
-        // defining filepath in DB is equal to file object
-        $file->move(public_path().'/img/', $file.'.jpg');
-        // storing images to public folder in tmp and add .jpg extension to file name
+        if($request->hasFile('profile_picture')) { // check if the file from request exist
+        $file = $request->file('profile_picture'); // get file and define it as object
+
+        $destinationPath= 'img/';
+        $filename = $file->getClientOriginalName();
+        Input::file('profile_picture')->move($destinationPath, $filename);
 
       $user = Auth::user();
-      $user->profile_picture = $file;
+      $user->profile_picture = $filename;
       $user->save();
     }
-      return view('auth.profile')->with('user', Auth::user());
+    return view('auth.profile')->with('user', Auth::user());
     }
 
 }
