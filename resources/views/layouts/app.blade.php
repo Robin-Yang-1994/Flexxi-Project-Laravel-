@@ -80,7 +80,11 @@
                                 <!-- Right Side Of Navbar -->
                                 <ul class="nav navbar-nav navbar-right">
 
+                            <li><img id="profile_picture" name="image"
+                            style="width:50px;height:50px;" src="/img/{{Auth::user()->profile_picture}}"></li>
+
                             <li class="dropdown">
+
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                     {{ Auth::user()->first_name }} <span class="caret"></span> {{--display users first name --}}
                                 </a>
