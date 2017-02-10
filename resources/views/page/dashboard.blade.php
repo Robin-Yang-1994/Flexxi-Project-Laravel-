@@ -9,7 +9,11 @@
 
 <a href="{{ url('#') }}">Change Event</a> <br>
 
-<a href="{{ url('#') }}">Upload Timetable</a> <br>
+
+
+<a href="{{ url('#') }}">Add Timetable</a> <br>
+
+
 
 <form method="post" action="/profile">
   {{csrf_field()}}
