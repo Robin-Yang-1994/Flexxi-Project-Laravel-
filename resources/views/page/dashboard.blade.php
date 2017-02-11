@@ -17,9 +17,9 @@
     <hr>
 
 
-<a href="{{ url('#') }}">Add Event</a> <br>
+<a href="{{ url('/addEvents-tasks') }}">Add Event</a> <br>
 
-<a href="{{ url('#') }}">Upcoming Event</a> <br>
+<a href="{{ url('/events-tasks') }}">Upcoming Event</a> <br>
 
 <a href="{{ url('#') }}">Change Event</a> <br>
 
