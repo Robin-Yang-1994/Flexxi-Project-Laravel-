@@ -85,8 +85,16 @@
                             <button type="Add" class="btn btn-primary">Update</button>
                             <br>
                         </div>
-
                 </form>
+
+                  <form method="post" action="/profile/delete/{{$user->id}}">
+                      {{csrf_field()}}
+                      <div class="col-md-4 col-md-offset-5">
+                          <br>
+                          <button type="Add" class="btn btn-primary">Delete</button>
+                          <br>
+                      </div>
+                  </form>
             </div>
             </div>
         </div>

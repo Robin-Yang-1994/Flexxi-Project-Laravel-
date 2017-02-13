@@ -11,7 +11,8 @@ class TimetableController extends Controller
 
     public function showTimetable(){
 
-        $timetable = Timetable::all();
+        $user = Auth::user()->id;
+        $timetable = Timetable::where('user_id', '=', $user)->get();
         return view('page.dashboard', compact('timetable'));
     }
 
