@@ -63,7 +63,7 @@
                     </div>
 
                     <div class="form-group">
-                        <label class="col-md-3 col-md-offset-1 control-label">Date (DD/MM/YY):</label>
+                        <label class="col-md-3 col-md-offset-1 control-label">Date (YYYY-MM-DD):</label>
                         <div class="form-group col-md-8">
                             <input name="date" type="text">
                             <br>
