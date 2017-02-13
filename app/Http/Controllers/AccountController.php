@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Timetable;
+use App\Task;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Input;
@@ -47,6 +49,17 @@ class AccountController extends Controller
       $user->save();
     }
     return view('auth.profile')->with('user', Auth::user());
+    }
+
+    public function deleteProfile(Request $request, User $user, Timetable $timetable, Task $task){
+
+        $auth = Auth::user()->id;
+        $timetableD = Timetable::where('user_id', '=', $auth)->delete();
+        $taskD = Task::where('user_id', '=', $auth)->delete();
+
+        $user->delete($request->all());
+        return redirect ('/');
+
     }
 
 }

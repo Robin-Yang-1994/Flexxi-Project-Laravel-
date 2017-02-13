@@ -17,6 +17,8 @@ Route::post('/profile/update/{user}', 'AccountController@updateProfile'); //upda
 
 Route::post('/profile/upload/{user}', 'AccountController@uploadProfilePicture'); //update profile image
 
+Route::post('/profile/delete/{user}', 'AccountController@deleteProfile'); // delete user profile
+
 Route::get('/addTimetable', 'TimetableController@addForm'); // add new lesson (in timetable) form
 
 Route::post('/newTimetable', 'TimetableController@addTimetable'); // add new lesson

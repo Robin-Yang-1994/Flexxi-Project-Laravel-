@@ -10,7 +10,8 @@ class TaskController extends Controller
 {
     public function showTasks(){
 
-        $tasks = Task::all();
+        $user = Auth::user()->id;
+        $tasks = Task::where('user_id', '=', $user)->get();
         return view('page.taskInformation', compact('tasks'));
     }
 
