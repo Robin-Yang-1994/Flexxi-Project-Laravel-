@@ -36,6 +36,7 @@
     @if(isset($tasks))
     @foreach($tasks as $events)
         Name: <a method="post" href="/events-tasks/{{$events->id}}/edit">{{$events->task_name}}</a><br>
+        Description: {{$events->description}}<br>
         Date: {{$events->due_date}}
         <br></br>
     @endforeach
