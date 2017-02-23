@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 use App\Task;
+use App\User;
 
 class TaskController extends Controller
 {
@@ -46,5 +47,41 @@ class TaskController extends Controller
 
         $events->delete($request->all());
         return redirect('/events-tasks');
+    }
+
+    public function searchTasks()
+    {
+        return view('page.taskInformation');
+    }
+
+//    public function autoCompleteSearch(Request $request)
+//    {
+//        $user = Auth::user()->id();
+//
+//        $data = Task::select("task_name as name")
+//                    ->where("task_name", "LIKE", "%{$request->input('query')}%")
+//                    ->get();
+//
+//
+////            Task::select("task_name as name")
+////            ->where("task_name", "LIKE", "%{$request->input('query')}%")
+////            ->get();
+//
+//        return response()->json($data);
+//    }
+
+    public function searchTask(Request $request){
+
+        $this->validate($request,['task_name'=>'required']);
+
+        $search = $request['task_name']; // define the field required from request
+
+        $user = Auth::user()->id;
+
+        $result = Task::where('task_name','LIKE',"%$search%")
+                        ->where('user_id', '=', $user)
+                        ->get(); // compare with database results
+
+        return view('page.taskInformation')->with('result', $result);
     }
 }
