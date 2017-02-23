@@ -8,7 +8,7 @@
 
     <form method="post" action="/events-tasks/search" role="search">
         {{csrf_field()}}
-        Search <br><input class="typeahead" style="margin:0px auto;width:300px;" type="text" name="task_name">
+        Search: <br><input class="typeahead" style="margin:0px auto;width:300px;" type="text" name="task_name">
         <button type="submit" class="btn btn-primary">Search</button>
         <br>
     </form>
@@ -18,7 +18,7 @@
             <p>No results found</p>
         @elseif (count ($result) >= 1)
             @foreach ($result as $events)
-            <a href="/events-tasks/{{$events->id}}/edit">{{$events->task_name}}</a>
+            <a href="/events-tasks/{{$events->id}}/edit">{{$events->task_name}}</a><br>
             @endforeach
             <p>Total Results:{{count($result)}}</p>
         @endif
@@ -32,10 +32,12 @@
         </p>
     @endif
 
-    <p>Tasks</p>
+    <p>Upcomming:</p>
     @if(isset($tasks))
     @foreach($tasks as $events)
-        <a method="post" href="/events-tasks/{{$events->id}}/edit">Name: {{$events->task_name}}</a><br>
+        Name: <a method="post" href="/events-tasks/{{$events->id}}/edit">{{$events->task_name}}</a><br>
+        Date: {{$events->due_date}}
+        <br></br>
     @endforeach
     @endif
 
