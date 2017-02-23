@@ -12,7 +12,9 @@ class TaskController extends Controller
     public function showTasks(){
 
         $user = Auth::user()->id;
-        $tasks = Task::where('user_id', '=', $user)->get();
+        $tasks = Task::where('user_id', '=', $user)
+            ->orderBy('due_date', 'asc')
+            ->get();
         return view('page.taskInformation', compact('tasks'));
     }
 
