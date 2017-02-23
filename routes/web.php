@@ -34,3 +34,9 @@ Route::get('/events-tasks/{events}/edit', 'TaskController@editTasksForm'); // ed
 Route::post('/updateEvents-tasks/{events}', 'TaskController@updateTasks'); // update existing task
 
 Route::post('/deleteEvents-tasks/{events}', 'TaskController@deleteTasks'); // delete existing task
+
+Route::get('search',array('as'=>'search','uses'=>'TaskController@searchTask'));
+
+Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'TaskController@autoCompleteSearch'));
+
+Route::post('/events-tasks/search','TaskController@searchTask'); // search task after auto complete
