@@ -31,4 +31,24 @@ class TimetableController extends Controller
         $new->save();
         return back();
     }
+
+    public function editTimetableForm(Timetable $lesson){
+
+        return view('forms.editLesson', compact('lesson'));
+    }
+
+    public function updateTimetable(Request $request, Timetable $lesson){ // update
+
+        $this->validate($request,['module'=>'required', 'lecturer_name'=>'required', 'location'=>'required',
+            'time'=>'required', 'finish'=>'required', 'date'=>'required']);
+
+        $lesson->update($request->all());
+        return redirect('/home');
+    }
+
+    public function deleteTimetable(Request $request, Timetable $lesson){ // delete
+
+        $lesson->delete($request->all());
+        return redirect('/home');
+    }
 }

@@ -21,7 +21,7 @@
                     <div class="form-group">
                         <label name="title" class="col-md-2 col-md-offset-1 control-label">Name:</label>
 
-                        <div class="col-md-7">
+                        <div class="col-md- 7">
                             <textarea id="name" class="form-control" name="task_name" required>{{$events->task_name}}</textarea>
                             <br>
                         </div>
