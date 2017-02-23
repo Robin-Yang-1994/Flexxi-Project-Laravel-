@@ -40,3 +40,9 @@ Route::get('search',array('as'=>'search','uses'=>'TaskController@searchTask'));
 Route::get('autocomplete',array('as'=>'autocomplete','uses'=>'TaskController@autoCompleteSearch'));
 
 Route::post('/events-tasks/search','TaskController@searchTask'); // search task after auto complete
+
+Route::get('/timetable/{lesson}/edit','TimetableController@editTimetableForm'); // show update timetable form for the lesson
+
+Route::post('/update-Timetable/{lesson}','TimetableController@updateTimetable'); // update timetable lesson
+
+Route::post('/delete-Timetable/{lesson}','TimetableController@deleteTimetable'); // delete timetable lesson

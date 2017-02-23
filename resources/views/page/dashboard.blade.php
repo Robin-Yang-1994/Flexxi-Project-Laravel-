@@ -6,7 +6,7 @@
 
     <p>Lessons</p>
     @foreach($timetable as $lesson)
-        Module: {{$lesson->module}}<br>
+        Module: <a method="post" href="/timetable/{{$lesson->id}}/edit">{{$lesson->module}}</a><br>
         Tutor: {{$lesson->lecturer_name}}<br>
         Location: {{$lesson->location}}<br>
         Start time: {{$lesson->time}}<br>
@@ -24,8 +24,6 @@
 <a href="{{ url('#') }}">Change Event</a> <br>
 
 <a href="{{ url('/addTimetable') }}">Add Timetable</a> <br>
-
-
 
 <form method="post" action="/profile">
   {{csrf_field()}}
