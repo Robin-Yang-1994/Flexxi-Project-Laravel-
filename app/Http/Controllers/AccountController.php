@@ -25,7 +25,7 @@ class AccountController extends Controller
     public function updateProfile(Request $request, User $user){
         $this->validate($request, ['first_name' => 'required',
                                      'last_name' => 'required',
-                                     'email' => 'required',
+                                     'emails' => 'required',
                                      'university' => 'required'
         ]);
 

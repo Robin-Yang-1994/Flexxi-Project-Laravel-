@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'driver' => env('MAIL_DRIVER', 'smtp'),
+    'driver' => env('MAIL_DRIVER', 'log'),
 
     /*
     |--------------------------------------------------------------------------
@@ -56,7 +56,7 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'Support@laracast.com'),
+        'address' => env('MAIL_FROM_ADDRESS', 'Flexxi@support.com'),
         'name' => env('MAIL_FROM_NAME', 'Flexxi Support'),
     ],
 

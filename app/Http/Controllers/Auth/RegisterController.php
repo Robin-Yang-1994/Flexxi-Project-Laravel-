@@ -6,6 +6,7 @@ use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -64,7 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user =  User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -74,5 +75,16 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
 
         ]);
+
+        $data['first_name']  = $user->first_name;
+
+        Mail::send('emails.welcomeUser', $data, function($message) use ($data)
+        {
+            $message->from('Flexxi@support.com', "Flexxi support");
+            $message->subject("Welcome to Flexxi");
+            $message->to($data['email']);
+        });
+
+        return $user;
     }
 }
