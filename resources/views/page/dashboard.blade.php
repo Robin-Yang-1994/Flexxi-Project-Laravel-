@@ -1,8 +1,13 @@
 @extends('layouts.app')
 @extends('layouts.layout')
+@extends('layouts.calenderStyle')
 
 @section('content')
 
+    @php$calendar = new \App\Http\Controllers\TimetableController();
+
+    echo $calendar->show();
+    @endphp
 
     <p>Lessons</p>
     @foreach($timetable as $lesson)
