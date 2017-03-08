@@ -98,7 +98,7 @@
 
                         <div class="form-group">
                                 <div class="col-md-12 col-md-offset-2">
-                                    <label>DOB (DD/MM/YY):</label>
+                                    <label>DOB (YYYY-MM-DD):</label>
                                     <input name="dob" type="text"/>
                         </div>
                         </div>
