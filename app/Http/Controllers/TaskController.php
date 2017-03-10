@@ -25,7 +25,7 @@ class TaskController extends Controller
 
     public function addTasks(Request $request, Task $task){ // add
 
-        $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required']);
+        $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required|date|date_format:Y-m-d']);
 
         $new = new Task($request->all()); // array merge
         $new->user_id = Auth::user()->id;
@@ -40,7 +40,7 @@ class TaskController extends Controller
 
     public function updateTasks(Request $request, Task $events){ // update
 
-        $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required']);
+        $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required|date|date_format:Y-m-d']);
         $events->update($request->all());
         return redirect('/events-tasks');
     }
