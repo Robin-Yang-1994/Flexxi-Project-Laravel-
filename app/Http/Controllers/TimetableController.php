@@ -24,7 +24,8 @@ class TimetableController extends Controller
     public function addTimetable(Request $request, Timetable $timetable){
 
         $this->validate($request,['module'=>'required', 'lecturer_name'=>'required', 'location'=>'required',
-                                  'time'=>'required', 'finish'=>'required', 'date'=>'required']);
+                                  'time'=>'required|date_format:H:i', 'finish'=>'required|date_format:H:i',
+                                  'date'=>'required|date|date_format:Y-m-d']);
 
         $new = new Timetable($request->all());
         $new->user_id = Auth::user()->id;
@@ -40,7 +41,8 @@ class TimetableController extends Controller
     public function updateTimetable(Request $request, Timetable $lesson){ // update
 
         $this->validate($request,['module'=>'required', 'lecturer_name'=>'required', 'location'=>'required',
-            'time'=>'required', 'finish'=>'required', 'date'=>'required']);
+                                  'time'=>'required|date_format:H:i', 'finish'=>'required|date_format:H:i',
+                                  'date'=>'required|date|date_format:Y-m-d']);
 
         $lesson->update($request->all());
         return redirect('/home');
