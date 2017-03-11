@@ -110,11 +110,33 @@ class TimetableController extends Controller
             $this->currentDate = date('Y-m-d',strtotime($this->currentYear.'-'.$this->currentMonth.'-'.($this->currentDay)));
 
             $user = Auth::user()->id;
-            $task = task::where('user_id', '=', $user)->where('due_date', 'LIKE', "%$this->currentMonth%")->get();
 
-            $cellContent = $this->currentDay;
+            $date = $this->currentMonth."-".$this->currentDay;
 
-            $this->currentDay++;
+            $task = task::where('user_id', '=', $user)
+                          ->where('due_date', 'LIKE', "%$date%")
+                          ->get();
+
+            foreach ($task as $tasks){
+                $taskss = $tasks->due_date;
+                $result = explode('-',$taskss);
+            }
+
+
+            if(!empty($task)) {
+
+                //dd($task);
+
+                $cellContent = $this->currentDay.$task->task_name; // check this outputting method
+
+                $this->currentDay++;
+            }
+            else{
+
+                $cellContent = $this->currentDay;
+                $this->currentDay++;
+
+            }
 
         }else{
 
