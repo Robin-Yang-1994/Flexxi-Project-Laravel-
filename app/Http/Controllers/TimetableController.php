@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Diaries;
 use Illuminate\Http\Request;
 use App\Timetable;
 use Auth;
@@ -13,7 +14,10 @@ class TimetableController extends Controller
 
         $user = Auth::user()->id;
         $timetable = Timetable::where('user_id', '=', $user)->get();
-        return view('page.dashboard', compact('timetable'));
+
+        $diary = Diaries::where('user_id', '=', $user)->get();
+
+        return view('page.dashboard', compact('timetable','diary'));
     }
 
     public function addForm(){
