@@ -100,7 +100,7 @@
                     {{csrf_field()}}
                     <div class="col-md-4 col-md-offset-5">
                         <br>
-                        <button type="Add" class="btn btn-primary">Delete</button>
+                        <button type="Add" onclick="return confirm('Are you sure?')" class="btn btn-primary">Delete</button>
                         <br>
                     </div>
                 </form>
