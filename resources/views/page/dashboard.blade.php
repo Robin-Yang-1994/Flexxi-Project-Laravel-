@@ -3,6 +3,17 @@
 
 @section('content')
 
+    <div class="navigation">
+        <ul>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
+
+            <li><a href="{{ url('/events-tasks') }}">Upcoming Event</a></li>
+
+            <li><a href="{{ url('#') }}">Change Event</a></li>
+
+            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
+        </ul>
+    </div>
 
     <p>Lessons</p>
     @foreach($timetable as $lesson)
@@ -14,20 +25,10 @@
         Date {{$lesson->date}}<br>
     @endforeach
 
-    <hr>
 
-
-<a href="{{ url('/addEvents-tasks') }}">Add Event</a> <br>
-
-<a href="{{ url('/events-tasks') }}">Upcoming Event</a> <br>
-
-<a href="{{ url('#') }}">Change Event</a> <br>
-
-<a href="{{ url('/addTimetable') }}">Add Timetable</a> <br>
-
-<form method="post" action="/profile">
-  {{csrf_field()}}
-<button>Settings</button>
-</form>
+{{--<form method="post" action="/profile">--}}
+  {{--{{csrf_field()}}--}}
+{{--<button>Settings</button>--}}
+{{--</form>--}}
 
 @endsection
