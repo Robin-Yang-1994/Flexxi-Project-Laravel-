@@ -16,6 +16,11 @@ body{
     background-color: #fff;
 }
 
+#notes{
+    border: 1px;
+    height: 200px;
+}
+
 .navigation ul {
     overflow: hidden;
     background-color: #f1c40f;
@@ -53,8 +58,3 @@ body{
     margin-left: auto;
     margin-right: auto;
 }
-
-/*.helpText{*/
-    /*width:85%;*/
-    /*background-colour:white; */
-/*}*/
