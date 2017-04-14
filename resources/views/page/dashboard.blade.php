@@ -26,9 +26,4 @@
     @endforeach
 
 
-{{--<form method="post" action="/profile">--}}
-  {{--{{csrf_field()}}--}}
-{{--<button>Settings</button>--}}
-{{--</form>--}}
-
 @endsection
