@@ -3,6 +3,18 @@
 
 @section('content')
 
+    <div class="navigation">
+        <ul>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
+
+            <li><a href="{{ url('/events-tasks') }}">Upcoming Event</a></li>
+
+            <li><a href="{{ url('#') }}">Change Event</a></li>
+
+            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
+        </ul>
+    </div>
+
     <div class="col-md-6 col-md-offset-3 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">Update Timetable</div>

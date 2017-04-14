@@ -1,5 +1,6 @@
 .nvhead{
     background: #f7db4f;
+    margin: auto;
 }
 
 .nvtext{
@@ -12,10 +13,48 @@
 }
 
 body{
-    backgroud: #fff;
+    background-color: #fff;
 }
 
-#notes{
-    border: 1px;
-    height: 200px;
+.navigation ul {
+    overflow: hidden;
+    background-color: #f1c40f;
+    list-style: none;
+    text-align: center;
+    padding: 0px;
 }
+
+.navigation li {
+    display:inline;
+}
+
+.navigation a {
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display:inline-block;
+    padding:10px;
+}
+
+.navigation a:hover {
+    background-color: #f39c12;
+    text-decoration: underline;
+
+}
+
+.helpPage{
+    height:100%;
+    border: 2px solid #7f8c8d;
+    background-color:white;
+    width:80%;
+    padding: 30px;
+    margin-top: 10px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/*.helpText{*/
+    /*width:85%;*/
+    /*background-colour:white; */
+/*}*/

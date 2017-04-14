@@ -6,6 +6,18 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
 
+    <div class="navigation">
+        <ul>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
+
+            <li><a href="{{ url('/events-tasks') }}">Upcoming Event</a></li>
+
+            <li><a href="{{ url('#') }}">Change Event</a></li>
+
+            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
+        </ul>
+    </div>
+
     <form method="post" action="/events-tasks/search" role="search">
         {{csrf_field()}}
         Search: <br><input class="typeahead" style="margin:0px auto;width:300px;" type="text" name="task_name">
