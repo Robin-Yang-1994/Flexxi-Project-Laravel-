@@ -28,6 +28,8 @@
                             <textarea id="notes" class="form-control" name="notes">{{$diaries->notes}}</textarea>
                         </div>
                             @endforeach
+                    {{csrf_field()}}
+                    <button>Save</button>
                 </form>
             </div>
             </div>

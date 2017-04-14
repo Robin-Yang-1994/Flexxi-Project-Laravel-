@@ -16,5 +16,6 @@ body{
 }
 
 #notes{
-    height: 130px;
+    border: 1px;
+    height: 200px;
 }
