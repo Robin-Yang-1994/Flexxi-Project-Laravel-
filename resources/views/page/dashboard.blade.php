@@ -19,17 +19,18 @@
         <div class="panel panel-default">
             <div class="panel-heading">Diary</div>
             <div class="panel-body">
-
-                <form method="post" action="/saveNotes">
-                    {{csrf_field()}}
                     <div class="col-md-12">
                         @foreach($diary as $diaries)
-                            <textarea id="notes" class="form-control" name="notes">{{$diaries->notes}}</textarea>
-                    </div>
-                    @endforeach
+                            <form method="post" action="/saveNotes/{{$diaries->id}}">
+                                <textarea id="notes" class="form-control" name="notes"
+                                          placeholder="Enter your notes here">{{$diaries->notes}}</textarea>
+                        @endforeach
                     {{csrf_field()}}
-                    <button>Save</button>
-                </form>
+                            <button type="Add" class="form-control btn btn-primary">Save</button><br><br>
+                            <button type="reset"class="form-control btn btn-primary"
+                                    onclick="myFunction().reset()">Reset Diary To Previous Notes</button>
+                            </form>
+                    </div>
             </div>
         </div>
     </div>
@@ -44,6 +45,13 @@
         End time: {{$lesson->finish}}<br>
         Date {{$lesson->date}}<br>
     @endforeach
+
+
+    <script>
+        function myFunction() {
+            document.getElementById("notes").reset();
+        }
+    </script>
 
 
 @endsection

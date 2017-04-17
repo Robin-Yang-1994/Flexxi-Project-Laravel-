@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Diaries;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -66,7 +67,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -76,5 +77,15 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
 
         ]);
+
+        $id = $user->id;
+
+        $diaries = new Diaries();
+        $text = "Enter your notes here";
+        $diaries->user_id = $id;
+        $diaries->notes = $text;
+        $diaries->save();
+
+        return $user;
     }
 }

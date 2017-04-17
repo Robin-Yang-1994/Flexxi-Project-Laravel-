@@ -46,3 +46,5 @@ Route::get('/timetable/{lesson}/edit','TimetableController@editTimetableForm'); 
 Route::post('/update-Timetable/{lesson}','TimetableController@updateTimetable'); // update timetable lesson
 
 Route::post('/delete-Timetable/{lesson}','TimetableController@deleteTimetable'); // delete timetable lesson
+
+Route::post('/saveNotes/{diaries}','DiaryController@updateDiary'); // update the diary notes
