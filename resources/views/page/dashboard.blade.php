@@ -2,7 +2,6 @@
 @extends('layouts.layout')
 
 @section('content')
-
     <div class="navigation">
         <ul>
             <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
@@ -14,6 +13,12 @@
             <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
         </ul>
     </div>
+
+    @if(Session('success'))
+        <div class="alert alert-success">
+            {{Session('success')}}
+        </div>
+    @endif
 
     <div class="col-md-12 col-xs-12">
         <div class="panel panel-default">

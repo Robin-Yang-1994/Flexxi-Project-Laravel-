@@ -15,6 +15,12 @@
         </ul>
     </div>
 
+    @if(Session('updateSuccess'))
+        <div class="alert alert-success">
+            {{Session('updateSuccess')}}
+        </div>
+    @endif
+
     <div class="col-md-6 col-md-offset-3 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">Update My Details</div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Diaries;
 use App\User;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -67,6 +68,8 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        Session::flash('success', 'Thank You, You Have Successfully Register');
+
         $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],

@@ -9,6 +9,7 @@ use App\Timetable;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 class AccountController extends Controller
 {
@@ -31,6 +32,7 @@ class AccountController extends Controller
         ]);
 
         $user->update($request->all());
+        Session::flash('updateSuccess', 'You Have Successfully Updated Your Profile');
         return view('auth.profile')->with('user', Auth::user());
     }
 
@@ -60,8 +62,8 @@ class AccountController extends Controller
         $diaryD = Diaries::where('user_id', '=', $auth)->delete();
 
         $user->delete($request->all());
+        Session::flash('deleteSuccess', 'You Account Has Been Successfully Deleted');
         return redirect ('/');
-
     }
 
 }
