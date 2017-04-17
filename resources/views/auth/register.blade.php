@@ -1,8 +1,14 @@
 @extends('layouts.app')
-
 @extends('layouts.layout')
-
 @section('content')
+    <br>
+
+    @if(Session('deleteSuccess'))
+        <div class="alert alert-danger">
+            {{Session('deleteSuccess')}}
+        </div>
+    @endif
+
     <br>
 <div class="container">
     <div class="row">
