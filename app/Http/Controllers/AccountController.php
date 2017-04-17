@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Diaries;
 use Illuminate\Http\Request;
 use App\User;
 use App\Timetable;
@@ -51,11 +52,12 @@ class AccountController extends Controller
     return view('auth.profile')->with('user', Auth::user());
     }
 
-    public function deleteProfile(Request $request, User $user, Timetable $timetable, Task $task){
+    public function deleteProfile(Request $request, User $user, Timetable $timetable, Task $task, Diaries $diary){
 
         $auth = Auth::user()->id;
         $timetableD = Timetable::where('user_id', '=', $auth)->delete();
         $taskD = Task::where('user_id', '=', $auth)->delete();
+        $diaryD = Diaries::where('user_id', '=', $auth)->delete();
 
         $user->delete($request->all());
         return redirect ('/');
