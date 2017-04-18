@@ -1,7 +1,9 @@
 @extends('layouts.app')
 @extends('layouts.layout')
+@extends('layouts.calenderStyle')
 
 @section('content')
+
     <div class="navigation">
         <ul>
             <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
@@ -40,7 +42,7 @@
         </div>
     </div>
     </div>
-
+    
     <p>Lessons</p>
     @foreach($timetable as $lesson)
         Module: <a method="post" href="/timetable/{{$lesson->id}}/edit">{{$lesson->module}}</a><br>
