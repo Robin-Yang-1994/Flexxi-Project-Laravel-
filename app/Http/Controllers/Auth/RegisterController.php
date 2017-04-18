@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Diaries;
 use App\User;
+use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -53,6 +55,8 @@ class RegisterController extends Controller
             'email' => 'required|email|max:255|unique:users',
             'password' => 'required|min:6|confirmed',
             'university' => 'required|max:255',
+            'dob' => 'required|date|date_format:Y-m-d',
+            'gender' => 'required',
         ]);
     }
 
@@ -64,7 +68,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        Session::flash('success', 'Thank You, You Have Successfully Register');
+
+        $user = User::create([
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -74,5 +80,15 @@ class RegisterController extends Controller
             'gender' => $data['gender'],
 
         ]);
+
+        $id = $user->id;
+
+        $diaries = new Diaries();
+        $text = "Enter your notes here";
+        $diaries->user_id = $id;
+        $diaries->notes = $text;
+        $diaries->save();
+
+        return $user;
     }
 }

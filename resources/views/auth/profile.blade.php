@@ -3,6 +3,24 @@
 
 @section('content')
 
+    <div class="navigation">
+        <ul>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
+
+            <li><a href="{{ url('/events-tasks') }}">Upcoming Event</a></li>
+
+            <li><a href="{{ url('#') }}">Change Event</a></li>
+
+            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
+        </ul>
+    </div>
+
+    @if(Session('updateSuccess'))
+        <div class="alert alert-success">
+            {{Session('updateSuccess')}}
+        </div>
+    @endif
+
     <div class="col-md-6 col-md-offset-3 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">Update My Details</div>
@@ -91,7 +109,7 @@
                       {{csrf_field()}}
                       <div class="col-md-4 col-md-offset-5">
                           <br>
-                          <button type="Add" class="btn btn-primary">Delete</button>
+                          <button type="Add" onclick="return confirm('Are you sure?')" class="btn btn-primary">Delete</button>
                           <br>
                       </div>
                   </form>
