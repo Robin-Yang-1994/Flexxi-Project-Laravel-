@@ -18,6 +18,15 @@ class TaskController extends Controller
         return view('page.taskInformation', compact('tasks'));
     }
 
+    public function showTasks2(){
+
+        $user = Auth::user()->id;
+        $tasks = Task::where('user_id', '=', $user)
+            ->orderBy('due_date', 'asc')
+            ->get();
+        return $tasks;
+    }
+
     public function addTasksForm(){
 
         return view('forms.addTask');
@@ -84,6 +93,8 @@ class TaskController extends Controller
                         ->where('user_id', '=', $user)
                         ->get(); // compare with database results
 
-        return view('page.taskInformation')->with('result', $result);
+        $tasks = $this->showTasks2();
+
+        return view('page.taskInformation')->with('result', $result)->with('tasks',$tasks);
     }
 }
