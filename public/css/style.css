@@ -18,7 +18,20 @@ body{
 
 #notes{
     border: 1px;
-    height: 200px;
+    height: 100px;
+}
+
+.diaryDiv{
+    margin-top: 16px;
+}
+
+.tasksBox{
+    margin: 2px;
+    border: 1px;
+    border-style: solid;
+    border-color: #787878;
+    text-align: center;
+    width: 445px;
 }
 
 .navigation ul {
@@ -61,4 +74,8 @@ body{
 
 .alert{
     text-align: center;
+}
+
+.typeahead{
+    width: 410px;
 }

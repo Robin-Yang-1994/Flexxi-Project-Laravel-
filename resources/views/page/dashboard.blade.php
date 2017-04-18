@@ -23,7 +23,16 @@
     @endif
 
     <div class="col-md-12 col-xs-12">
-        <div class="panel panel-default">
+    @php$calendar = new \App\Http\Controllers\TimetableController();
+
+    echo $calendar->show();
+    @endphp
+    </div>
+
+    <br>
+
+    <div class="col-md-12 col-xs-12">
+        <div class="diaryDiv panel panel-default">
             <div class="panel-heading">Diary</div>
             <div class="panel-body">
                     <div class="col-md-12">
@@ -33,6 +42,7 @@
                                           placeholder="Enter your notes here">{{$diaries->notes}}</textarea>
                         @endforeach
                     {{csrf_field()}}
+                                <hr>
                             <button type="Add" class="form-control btn btn-primary">Save</button><br><br>
                             <button type="reset"class="form-control btn btn-primary"
                                     onclick="myFunction().reset()">Reset Diary To Previous Notes</button>
