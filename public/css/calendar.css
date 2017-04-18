@@ -19,7 +19,7 @@ div#calendar div.box{
 div#calendar div.header{
     line-height:40px;
     vertical-align:middle;
-    position:absolute;
+    position:relative;
     left:11px;
     top:0px;
     width:582px;
