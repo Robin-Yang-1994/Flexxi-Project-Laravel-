@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
 
 class RegisterController extends Controller
 {
