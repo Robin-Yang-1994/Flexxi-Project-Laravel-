@@ -6,13 +6,15 @@
 
     <div class="navigation">
         <ul>
-            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
+            <li><a href="{{ url('/home') }}">See Dashboard</a></li>
 
-            <li><a href="{{ url('/events-tasks') }}">Upcoming Event</a></li>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Events</a></li>
 
-            <li><a href="{{ url('#') }}">Change Event</a></li>
+            <li><a href="{{ url('/events-tasks') }}">Upcoming Events</a></li>
 
-            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
+            <li><a href="{{ url('/addTimetable') }}">Add Timetables</a></li>
+
+            <li><a href="{{ url('/Help') }}">Information</a>
         </ul>
     </div>
 
