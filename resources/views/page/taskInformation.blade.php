@@ -18,6 +18,24 @@
         </ul>
     </div>
 
+    @if(Session('addSuccess'))
+        <div class="alert alert-success">
+            {{Session('addSuccess')}}
+        </div>
+    @endif
+
+    @if(Session('updateSuccess'))
+        <div class="alert alert-success">
+            {{Session('updateSuccess')}}
+        </div>
+    @endif
+
+    @if(Session('deleteSuccess'))
+        <div class="alert alert-danger">
+            {{Session('deleteSuccess')}}
+        </div>
+    @endif
+
     <div class="col-md-8 col-md-offset-2 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">Search:</div>
@@ -25,7 +43,7 @@
                 <form method="post" action="/events-tasks/search" role="search">
                 {{csrf_field()}}
                 <div class="col-md-12 col-xs-10" align="center">
-                    <input class="typeahead" type="text" name="task_name">
+                    <input class="typeahead" type="text" name="task_name" required>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
                 </form>
@@ -45,13 +63,13 @@
                         @endif
                      @endif
 
-                    @if(count($errors))
-                     <p>
-                        @foreach($errors->all() as $error)
-                            {{$error}}
-                        @endforeach
-                     </p>
-                    @endif
+                    {{--@if(count($errors))--}}
+                     {{--<p>--}}
+                        {{--@foreach($errors->all() as $error)--}}
+                            {{--{{$error}}--}}
+                        {{--@endforeach--}}
+                     {{--</p>--}}
+                    {{--@endif--}}
                 </div>
             </div>
         </div>

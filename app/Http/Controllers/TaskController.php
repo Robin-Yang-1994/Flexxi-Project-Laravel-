@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Task;
 use App\User;
+use Illuminate\Support\Facades\Session;
 
 class TaskController extends Controller
 {
@@ -39,6 +40,7 @@ class TaskController extends Controller
         $new = new Task($request->all()); // array merge
         $new->user_id = Auth::user()->id;
         $new->save();
+        Session::flash('addSuccess', 'You Have Successfully Added A New Tasks To Your Timetable');
         return redirect('/events-tasks'); // link to this page
     }
 
@@ -51,12 +53,14 @@ class TaskController extends Controller
 
         $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required|date|date_format:Y-m-d']);
         $events->update($request->all());
+        Session::flash('updateSuccess', 'You Have Successfully Updated Your Tasks');
         return redirect('/events-tasks');
     }
 
     public function deleteTasks(Request $request, Task $events){ // delete
 
         $events->delete($request->all());
+        Session::flash('deleteSuccess', 'You Have Deleted a Task');
         return redirect('/events-tasks');
     }
 

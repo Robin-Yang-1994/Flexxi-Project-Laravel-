@@ -50,7 +50,7 @@
                   </form>
 
 
-                <form method="post" action="/profile/update/{{$user->id}}">
+                <form method="POST" action="/profile/update/{{$user->id}}">
                       {{csrf_field()}}
                     <div class="form-group">
                         <label name="first_name" class="col-md-2 col-md-offset-1 control-label">First name</label>
@@ -79,17 +79,6 @@
                         </div>
                     </div>
 
-
-                    <!-- <div class="form-group">
-                        <label name="password" class="col-md-2 col-md-offset-1 control-label">Password</label>
-
-                        <div class="col-md-7">
-                            <input id="password" type="password" class="form-control" name="password"required>
-                            <br>
-                        </div>
-                    </div> -->
-
-
                      <div class="form-group">
                         <label name="university" class="col-md-2 col-md-offset-1 control-label">University</label>
 
@@ -116,6 +105,5 @@
             </div>
             </div>
         </div>
-    </div>
 
 @endsection
