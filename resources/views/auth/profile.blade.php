@@ -5,13 +5,16 @@
 
     <div class="navigation">
         <ul>
-            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
 
-            <li><a href="{{ url('/events-tasks') }}">Upcoming Event</a></li>
+            <li><a href="{{ url('/home') }}">See Dashboard</a></li>
 
-            <li><a href="{{ url('#') }}">Change Event</a></li>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Events</a></li>
 
-            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
+            <li><a href="{{ url('/events-tasks') }}">Upcoming Events</a></li>
+
+            <li><a href="{{ url('/addTimetable') }}">Add Timetables</a></li>
+
+            <li><a href="{{ url('/Help') }}">Information</a>
         </ul>
     </div>
 
@@ -42,7 +45,7 @@
                         <div class="col-md-7">
                             <img id="profile_picture" class="form-control" name="image"
                              style="width:150px;height:150px;" src="/img/{{$user->profile_picture}}">
-                            <input type="file" name="profile_picture">
+                            <input type="file" name="profile_picture" required>
                             <input type="submit" value="Upload Image" name="submit">
                             <br></br>
                         </div>

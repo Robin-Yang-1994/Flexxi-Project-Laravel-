@@ -8,13 +8,15 @@
 
     <div class="navigation">
         <ul>
-            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
+            <li><a href="{{ url('/home') }}">See Dashboard</a></li>
 
-            <li><a href="{{ url('/events-tasks') }}">Upcoming Event</a></li>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Events</a></li>
 
-            <li><a href="{{ url('#') }}">Change Event</a></li>
+            <li><a href="{{ url('/events-tasks') }}">Upcoming Events</a></li>
 
-            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
+            <li><a href="{{ url('/addTimetable') }}">Add Timetables</a></li>
+
+            <li><a href="{{ url('/Help') }}">Information</a>
         </ul>
     </div>
 
@@ -43,7 +45,7 @@
                 <form method="post" action="/events-tasks/search" role="search">
                 {{csrf_field()}}
                 <div class="col-md-12 col-xs-10" align="center">
-                    <input class="typeahead" type="text" name="task_name" required>
+                    <input class="typeahead" type="text" name="task_name" placeholder="Enter Keywords" required>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
                 </form>
