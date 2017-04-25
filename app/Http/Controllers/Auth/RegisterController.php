@@ -82,6 +82,15 @@ class RegisterController extends Controller
 
         ]);
 
+        $data['first_name']  = $user->first_name;
+
+        Mail::send('emails.welcomeUser', $data, function($message) use ($data)
+        {
+            $message->from('NoReplyFlexxi@support.com', "Flexxi support");
+            $message->subject("Welcome to Flexxi");
+            $message->to($data['email']);
+        });
+
         $id = $user->id;
 
         $diaries = new Diaries();
