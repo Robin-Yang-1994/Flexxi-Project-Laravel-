@@ -22,6 +22,12 @@
         </div>
     @endif
 
+    @if(Session('diarySuccess'))
+        <div class="alert alert-success">
+            {{Session('diarySuccess')}}
+        </div>
+    @endif
+
     <div class="col-md-12 col-xs-12">
     @php$calendar = new \App\Http\Controllers\TimetableController();
 

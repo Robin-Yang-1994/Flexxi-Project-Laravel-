@@ -17,7 +17,6 @@ class AccountController extends Controller
 
         if(Auth::check()) {
             $user = Auth::user()->id;
-
             return view('auth.profile')->with('user', Auth::user());
         }
         else{
@@ -27,7 +26,7 @@ class AccountController extends Controller
     public function updateProfile(Request $request, User $user){
         $this->validate($request, ['first_name' => 'required',
                                      'last_name' => 'required',
-                                     'emails' => 'required',
+                                     'email' => 'required',
                                      'university' => 'required'
         ]);
 
