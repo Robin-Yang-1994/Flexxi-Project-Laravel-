@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Diaries;
 use Illuminate\Http\Request;
 use App\User;
 use App\Timetable;
 use App\Task;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Input;
 class AccountController extends Controller
 {
@@ -30,6 +32,7 @@ class AccountController extends Controller
         ]);
 
         $user->update($request->all());
+        Session::flash('updateSuccess', 'You Have Successfully Updated Your Profile');
         return view('auth.profile')->with('user', Auth::user());
     }
 
@@ -51,15 +54,16 @@ class AccountController extends Controller
     return view('auth.profile')->with('user', Auth::user());
     }
 
-    public function deleteProfile(Request $request, User $user, Timetable $timetable, Task $task){
+    public function deleteProfile(Request $request, User $user, Timetable $timetable, Task $task, Diaries $diary){
 
         $auth = Auth::user()->id;
         $timetableD = Timetable::where('user_id', '=', $auth)->delete();
         $taskD = Task::where('user_id', '=', $auth)->delete();
+        $diaryD = Diaries::where('user_id', '=', $auth)->delete();
 
         $user->delete($request->all());
+        Session::flash('deleteSuccess', 'You Account Has Been Successfully Deleted');
         return redirect ('/');
-
     }
 
 }

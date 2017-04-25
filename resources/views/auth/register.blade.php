@@ -1,10 +1,15 @@
 @extends('layouts.app')
-
 @extends('layouts.layout')
-
 @section('content')
+    <br>
 
+    @if(Session('deleteSuccess'))
+        <div class="alert alert-danger">
+            {{Session('deleteSuccess')}}
+        </div>
+    @endif
 
+    <br>
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-xs-12">
@@ -85,7 +90,7 @@
                             <label for="university" class="col-md-4 control-label">University</label>
 
                             <div class="col-md-6">
-                                <input id="university" type="text" class="form-control" name="university" required>
+                                <input id="university" type="text" class="form-control" name="university" value="{{ old('university') }}" required>
 
                              @if ($errors->has('university'))
                                     <span class="help-block">
@@ -97,19 +102,29 @@
 
 
                         <div class="form-group">
-                                <div class="col-md-12 col-md-offset-2">
-                                    <label>DOB (DD/MM/YY):</label>
-                                    <input name="dob" type="text"/>
+                            <label class="col-md-4 control-label">DOB (YYYY-MM-DD)</label>
+                               <div class="col-md-6">
+                                    <input id="dob" name="dob" type="text" class="form-control" value="{{ old('dob') }}"  required>
+                               @if ($errors->has('dob'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('dob') }}</strong>
+                                    </span>
+                               @endif
                         </div>
                         </div>
 
-
-                            <div class="form-group" align="center">
-                            <div class="col-md-11 col-md-offset-1">
-                            Male: <input name="gender"  type="radio" value="male" required>
-                            Female: <input name="gender" type="radio" value="female">
+                        <div class="form-group">
+                            <div class="col-md-12 control-label">
+                                <div class="col-md-8">
+                                Male: <input name="gender"  type="radio" value="male">
+                                Female: <input name="gender" type="radio" value="female">
+                                @if ($errors->has('gender'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-                        </div>
+                            </div></div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-5">

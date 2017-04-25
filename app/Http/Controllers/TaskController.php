@@ -18,6 +18,15 @@ class TaskController extends Controller
         return view('page.taskInformation', compact('tasks'));
     }
 
+    public function showTasks2(){
+
+        $user = Auth::user()->id;
+        $tasks = Task::where('user_id', '=', $user)
+            ->orderBy('due_date', 'asc')
+            ->get();
+        return $tasks;
+    }
+
     public function addTasksForm(){
 
         return view('forms.addTask');
@@ -25,7 +34,7 @@ class TaskController extends Controller
 
     public function addTasks(Request $request, Task $task){ // add
 
-        $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required']);
+        $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required|date|date_format:Y-m-d']);
 
         $new = new Task($request->all()); // array merge
         $new->user_id = Auth::user()->id;
@@ -40,7 +49,7 @@ class TaskController extends Controller
 
     public function updateTasks(Request $request, Task $events){ // update
 
-        $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required']);
+        $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required|date|date_format:Y-m-d']);
         $events->update($request->all());
         return redirect('/events-tasks');
     }
@@ -84,6 +93,8 @@ class TaskController extends Controller
                         ->where('user_id', '=', $user)
                         ->get(); // compare with database results
 
-        return view('page.taskInformation')->with('result', $result);
+        $tasks = $this->showTasks2();
+
+        return view('page.taskInformation')->with('result', $result)->with('tasks',$tasks);
     }
 }

@@ -3,18 +3,22 @@
 
 @section('content')
 
+    <div class="navigation">
+        <ul>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
+
+            <li><a href="{{ url('/events-tasks') }}">Upcoming Event</a></li>
+
+            <li><a href="{{ url('#') }}">Change Event</a></li>
+
+            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
+        </ul>
+    </div>
+
     <div class="col-md-6 col-md-offset-3 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">Update Tasks</div>
             <div class="panel-body">
-
-                @if(count($errors))
-                    <ul>
-                        @foreach($errors->all() as $error)
-                            {{$error}}
-                        @endforeach
-                    </ul>
-                @endif
 
                 <form method="post" action="/updateEvents-tasks/{{$events->id}}">
                     {{csrf_field()}}
@@ -23,6 +27,11 @@
 
                         <div class="col-md-7">
                             <textarea id="name" class="form-control" name="task_name" required>{{$events->task_name}}</textarea>
+                            @if ($errors->has('task_name'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('task_name') }}</strong>
+                                </span>
+                            @endif
                             <br>
                         </div>
                     </div>
@@ -32,6 +41,11 @@
 
                         <div class="col-md-7">
                             <textarea id="description" class="form-control" name="description"required>{{$events->description}}</textarea>
+                            @if ($errors->has('description'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('description') }}</strong>
+                                </span>
+                            @endif
                             <br>
                         </div>
                     </div>
@@ -39,7 +53,12 @@
                     <div class="form-group">
                         <label class="col-md-4 col-md-offset-1 control-label">Date (YYYY-MM-DD):</label>
                         <div class="form-group col-md-5">
-                            <textarea name="due_date" type="text">{{$events->due_date}}</textarea>
+                            <textarea name="due_date" type="text" required>{{$events->due_date}}</textarea>
+                            @if ($errors->has('due_date'))
+                                <span class="help-block">
+                                        <strong>{{ $errors->first('due_date') }}</strong>
+                                </span>
+                            @endif
                             <br>
                         </div>
                     </div>
@@ -54,7 +73,7 @@
                     {{csrf_field()}}
                     <div class="col-md-4 col-md-offset-5">
                     <br>
-                     <button type="Add" class="btn btn-primary">Delete</button>
+                     <button type="Add" onclick="return confirm('Are you sure?')" class="btn btn-primary">Delete</button>
                     <br>
                     </div>
                 </form>
