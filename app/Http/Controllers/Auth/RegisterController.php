@@ -80,7 +80,7 @@ class RegisterController extends Controller
 
         Mail::send('emails.welcomeUser', $data, function($message) use ($data)
         {
-            $message->from('Flexxi@support.com', "Flexxi support");
+            $message->from('NoReplyFlexxi@support.com', "Flexxi support");
             $message->subject("Welcome to Flexxi");
             $message->to($data['email']);
         });

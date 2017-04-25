@@ -51,7 +51,7 @@ class SendEmails extends Command
 
             Mail::send('emails.taskNotify',['task_info' => $task], function($message) use($task) {
 
-                $message->from('Flexxi@support.com');
+                $message->from('NoReplyFlexxi@support.com');
                 $message->to($task['email']);
                 $message->subject($task['task_name']);
             });
