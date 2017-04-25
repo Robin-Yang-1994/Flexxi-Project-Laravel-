@@ -2,7 +2,7 @@
 @extends('layouts.layout')
 @section('content')
 
-    <div class="helpPage">
+    <div class="helpPage container">
         <h1>Student Information</h1>
 
         <p>U1352883</p>

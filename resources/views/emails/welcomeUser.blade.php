@@ -1,3 +1,6 @@
+<div style="background: #f7db4f" class="w3-container w3-teal">
+    <h1 align="center" style="color: white">Flexxi</h1>
+</div>
 
 <div class="container">
     <div align="center">

@@ -1,7 +1,11 @@
+<div style="background: #f7db4f" class="w3-container w3-teal">
+    <h1 align="center" style="color: white">Flexxi</h1>
+</div>
+
 <div class="container">
     <div align="center">
 
-        <h1>Dear User,</h1>
+        <h2>Dear User,</h2>
 
         <p>This is a reminder email of task {{$task_info->task_name}} is due on {{$task_info->due_date}}.</p>
         <p>Keep up the good work</p>
