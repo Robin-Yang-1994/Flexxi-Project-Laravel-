@@ -31,7 +31,14 @@ body{
     border-style: solid;
     border-color: #787878;
     text-align: center;
-    width: 445px;
+}
+
+.timetableBox{
+    margin: 2px;
+    border: 1px;
+    border-style: solid;
+    border-color: #787878;
+    text-align: center;
 }
 
 .navigation ul {
@@ -75,8 +82,4 @@ body{
 
 .alert{
     text-align: center;
-}
-
-.typeahead{
-    width: 410px;
 }

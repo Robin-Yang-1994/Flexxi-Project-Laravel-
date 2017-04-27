@@ -7,9 +7,11 @@ Route::get('/', function () {
 
 Route::get('/help', 'HelpController@showHelp'); // website information
 
+Route::get('/information', 'HelpController@showInformation'); // website information
+
 Auth::routes(); // middleware access for authentication
 
-Route::get('/home', 'TimetableController@showTimetable'); // default home page (dashboard view after logging in)
+Route::get('/home', 'DiaryController@showDiary'); // default home page (dashboard view after logging in)
 
 Route::post('/profile', 'AccountController@showProfile'); // show profile information
 

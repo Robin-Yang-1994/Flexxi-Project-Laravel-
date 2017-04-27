@@ -1,3 +1,5 @@
+@if (Auth::guest()) {{--if user is guest, it will change the login, register and logo direct link--}}
+@else
 @extends('layouts.app')
 @extends('layouts.layout')
 
@@ -7,13 +9,13 @@
         <ul>
             <li><a href="{{ url('/home') }}">See Dashboard</a></li>
 
-            <li><a href="{{ url('/addEvents-tasks') }}">Add Events</a></li>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
 
             <li><a href="{{ url('/events-tasks') }}">Upcoming Events</a></li>
 
-            <li><a href="{{ url('/addTimetable') }}">Add Timetables</a></li>
+            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
 
-            <li><a href="{{ url('/Help') }}">Information</a>
+            <li><a href="{{ url('/information') }}">Information</a>
         </ul>
     </div>
 
@@ -79,3 +81,4 @@
 
 
 @endsection
+@endif

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Timetable;
 use Illuminate\Http\Request;
 use Auth;
 use App\Task;
@@ -16,7 +17,10 @@ class TaskController extends Controller
         $tasks = Task::where('user_id', '=', $user)
             ->orderBy('due_date', 'asc')
             ->get();
-        return view('page.taskInformation', compact('tasks'));
+
+        $timetable = (new TimetableController)->showTimetable();
+
+        return view('page.taskInformation', compact('tasks'))->with('timetable', $timetable);
     }
 
     public function showTasks2(){
@@ -26,6 +30,15 @@ class TaskController extends Controller
             ->orderBy('due_date', 'asc')
             ->get();
         return $tasks;
+    }
+
+    public function showTimetable2(){
+
+        $user = Auth::user()->id;
+        $timetable = Timetable::where('user_id', '=', $user)
+            ->orderBy('date', 'asc')
+            ->get();
+        return $timetable;
     }
 
     public function addTasksForm(){
@@ -60,7 +73,7 @@ class TaskController extends Controller
     public function deleteTasks(Request $request, Task $events){ // delete
 
         $events->delete($request->all());
-        Session::flash('deleteSuccess', 'You Have Deleted a Task');
+        Session::flash('deleteSuccess', 'You Have Deleted A Task');
         return redirect('/events-tasks');
     }
 
@@ -99,6 +112,8 @@ class TaskController extends Controller
 
         $tasks = $this->showTasks2();
 
-        return view('page.taskInformation')->with('result', $result)->with('tasks',$tasks);
+        $timetable = $this->showTimetable2();
+
+        return view('page.taskInformation')->with('result', $result)->with('tasks',$tasks)->with('timetable',$timetable);
     }
 }

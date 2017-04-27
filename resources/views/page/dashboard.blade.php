@@ -1,3 +1,6 @@
+@if (Auth::guest()) {{--if user is guest, it will change the login, register and logo direct link--}}
+@else
+
 @extends('layouts.app')
 @extends('layouts.layout')
 @extends('layouts.calenderStyle')
@@ -8,13 +11,13 @@
         <ul>
             <li><a href="{{ url('/home') }}">See Dashboard</a></li>
 
-            <li><a href="{{ url('/addEvents-tasks') }}">Add Events</a></li>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
 
             <li><a href="{{ url('/events-tasks') }}">Upcoming Events</a></li>
 
-            <li><a href="{{ url('/addTimetable') }}">Add Timetables</a></li>
+            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
 
-            <li><a href="{{ url('/Help') }}">Information</a>
+            <li><a href="{{ url('/information') }}">Information</a>
         </ul>
     </div>
 
@@ -59,18 +62,6 @@
             </div>
         </div>
     </div>
-    </div>
-    
-    <p>Lessons</p>
-    @foreach($timetable as $lesson)
-        Module: <a method="post" href="/timetable/{{$lesson->id}}/edit">{{$lesson->module}}</a><br>
-        Tutor: {{$lesson->lecturer_name}}<br>
-        Location: {{$lesson->location}}<br>
-        Start time: {{$lesson->time}}<br>
-        End time: {{$lesson->finish}}<br>
-        Date {{$lesson->date}}<br>
-    @endforeach
-
 
     <script>
         function myFunction() {
@@ -78,5 +69,5 @@
         }
     </script>
 
-
 @endsection
+@endif
