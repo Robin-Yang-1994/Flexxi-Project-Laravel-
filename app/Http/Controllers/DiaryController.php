@@ -14,4 +14,13 @@ class DiaryController extends Controller
         Session::flash('diarySuccess', 'A New Diary Entry Has Been Saved');
         return redirect('/home');
     }
+
+    public function showDiary(){
+
+        $user = Auth::user()->id;
+
+        $diary = Diaries::where('user_id', '=', $user)->get();
+
+        return view('page.dashboard', compact('diary', $diary));
+    }
 }

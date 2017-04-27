@@ -1,3 +1,5 @@
+@if (Auth::guest()) {{--if user is guest, it will change the login, register and logo direct link--}}
+@else
 @extends('layouts.app')
 @extends('layouts.layout')
 
@@ -10,13 +12,13 @@
         <ul>
             <li><a href="{{ url('/home') }}">See Dashboard</a></li>
 
-            <li><a href="{{ url('/addEvents-tasks') }}">Add Events</a></li>
+            <li><a href="{{ url('/addEvents-tasks') }}">Add Event</a></li>
 
             <li><a href="{{ url('/events-tasks') }}">Upcoming Events</a></li>
 
-            <li><a href="{{ url('/addTimetable') }}">Add Timetables</a></li>
+            <li><a href="{{ url('/addTimetable') }}">Add Timetable</a></li>
 
-            <li><a href="{{ url('/Help') }}">Information</a>
+            <li><a href="{{ url('/information') }}">Information</a>
         </ul>
     </div>
 
@@ -38,13 +40,14 @@
         </div>
     @endif
 
+<div class="container">
     <div class="col-md-8 col-md-offset-2 col-xs-12">
         <div class="panel panel-default">
             <div class="panel-heading">Search:</div>
             <div class="panel-body">
                 <form method="post" action="/events-tasks/search" role="search">
                 {{csrf_field()}}
-                <div class="col-md-12 col-xs-10" align="center">
+                <div class="col-md-6 col-md-offset-3 col-xs-10" align="center">
                     <input class="typeahead" type="text" name="task_name" placeholder="Enter Keywords" required>
                     <button type="submit" class="btn btn-primary">Search</button>
                 </div>
@@ -76,26 +79,47 @@
             </div>
         </div>
     </div>
+    </div>
 
-
+<div class="container">
     <div class="col-md-8 col-md-offset-2 col-xs-12">
         <div class="panel panel-default">
-        <div class="panel-heading">Upcomming:</div>
+        <div class="panel-heading">Upcomming Events:</div>
             <div class="panel-body">
+                <div class="row col-md-offset-1 col-xs-offset-1 col-sm-offset-1">
                     @foreach($tasks as $events)
-                        <div class="tasksBox container col-md-5 col-md-offset-2 col-xs-8">
+                        <div class="tasksBox col-md-5 col-xs-10 col-sm-10">
                              Name: <a method="post" href="/events-tasks/{{$events->id}}/edit">{{$events->task_name}}</a><br>
                              Description: {{$events->description}}<br>
                              Date: {{$events->due_date}}
                         </div>
                     @endforeach
                 </div>
+                </div>
             </div>
         </div>
       </div>
 
-
-
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2 col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">Lessons:</div>
+                <div class="panel-body">
+                    <div class="row col-md-offset-1 col-xs-offset-1 col-sm-offset-1">
+                        @foreach($timetable as $lesson)
+                            <div class="timetableBox col-md-5 col-xs-10 col-sm-10">
+                                Module: <a method="post" href="/timetable/{{$lesson->id}}/edit">{{$lesson->module}}</a><br>
+                                Tutor: {{$lesson->lecturer_name}}<br>
+                                Location: {{$lesson->location}}<br>
+                                Start time: {{$lesson->time}}<br>
+                                End time: {{$lesson->finish}}<br>
+                            </div>
+                         @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     {{--<script type="text/javascript">--}}
         {{--var path = "{{ route('autocomplete') }}";--}}
@@ -110,3 +134,4 @@
 
 
 @endsection
+@endif

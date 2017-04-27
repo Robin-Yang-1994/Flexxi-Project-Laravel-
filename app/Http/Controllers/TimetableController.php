@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Timetable;
 use App\Task;
 use Auth;
+use Illuminate\Support\Facades\Session;
 
 
 class TimetableController extends Controller
@@ -243,9 +244,7 @@ class TimetableController extends Controller
         $user = Auth::user()->id;
         $timetable = Timetable::where('user_id', '=', $user)->get();
 
-        $diary = Diaries::where('user_id', '=', $user)->get();
-
-        return view('page.dashboard', compact('timetable','diary'));
+        return $timetable;
     }
 
     public function addForm(){
@@ -262,7 +261,8 @@ class TimetableController extends Controller
         $new = new Timetable($request->all());
         $new->user_id = Auth::user()->id;
         $new->save();
-        return back();
+        Session::flash('addSuccess', 'You Have Successfully Added A New Lesson');
+        return redirect('/events-tasks');
     }
 
     public function editTimetableForm(Timetable $lesson){
@@ -277,12 +277,14 @@ class TimetableController extends Controller
                                   'date'=>'required|date|date_format:Y-m-d']);
 
         $lesson->update($request->all());
-        return redirect('/home');
+        Session::flash('updateSuccess', 'You Have Successfully Updated Your Timetable Lessons');
+        return redirect('/events-tasks');
     }
 
     public function deleteTimetable(Request $request, Timetable $lesson){ // delete
 
         $lesson->delete($request->all());
-        return redirect('/home');
+        Session::flash('deleteSuccess', 'You Have Deleted A Lesson');
+        return redirect('/events-tasks');
     }
 }
