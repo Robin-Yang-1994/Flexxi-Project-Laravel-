@@ -50,7 +50,7 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
-        return Validator::make($data, [
+        return Validator::make($data, [        // set format before enter data into database
             'first_name' => 'required|max:255',
             'last_name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -69,9 +69,9 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Session::flash('success', 'Thank You, You Have Successfully Registered');
+        Session::flash('success', 'Thank You, You Have Successfully Registered'); // flash message
 
-        $user = User::create([
+        $user = User::create([  // create user account with information
             'first_name' => $data['first_name'],
             'last_name' => $data['last_name'],
             'email' => $data['email'],
@@ -82,18 +82,18 @@ class RegisterController extends Controller
 
         ]);
 
-        $data['first_name']  = $user->first_name;
+        $data['first_name']  = $user->first_name; // get first name
 
-        Mail::send('emails.welcomeUser', $data, function($message) use ($data)
+        Mail::send('emails.welcomeUser', $data, function($message) use ($data) // send user welcome email
         {
             $message->from('NoReplyFlexxi@support.com', "Flexxi support");
             $message->subject("Welcome to Flexxi");
             $message->to($data['email']);
         });
 
-        $id = $user->id;
+        $id = $user->id;  // initialise id after user is created
 
-        $diaries = new Diaries();
+        $diaries = new Diaries();  // create new diary entry for user
         $text = "Enter your notes here";
         $diaries->user_id = $id;
         $diaries->notes = $text;

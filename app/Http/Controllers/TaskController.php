@@ -11,19 +11,19 @@ use Illuminate\Support\Facades\Session;
 
 class TaskController extends Controller
 {
-    public function showTasks(){
+    public function showTasks(){ // show task method
 
         $user = Auth::user()->id;
         $tasks = Task::where('user_id', '=', $user)
             ->orderBy('due_date', 'asc')
-            ->get();
+            ->get();     // get session user tasks
 
-        $timetable = (new TimetableController)->showTimetable();
+        $timetable = (new TimetableController)->showTimetable(); // get user session timetable in timetable controller
 
-        return view('page.taskInformation', compact('tasks'))->with('timetable', $timetable);
+        return view('page.taskInformation', compact('tasks'))->with('timetable', $timetable); // return to view with multiple arguements
     }
 
-    public function showTasks2(){
+    public function showTasks2(){    // get task object
 
         $user = Auth::user()->id;
         $tasks = Task::where('user_id', '=', $user)
@@ -32,7 +32,7 @@ class TaskController extends Controller
         return $tasks;
     }
 
-    public function showTimetable2(){
+    public function showTimetable2(){  // get timetable object
 
         $user = Auth::user()->id;
         $timetable = Timetable::where('user_id', '=', $user)
@@ -41,12 +41,12 @@ class TaskController extends Controller
         return $timetable;
     }
 
-    public function addTasksForm(){
+    public function addTasksForm(){ // new task form
 
         return view('forms.addTask');
     }
 
-    public function addTasks(Request $request, Task $task){ // add
+    public function addTasks(Request $request, Task $task){ // add task
 
         $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required|date|date_format:Y-m-d']);
 
@@ -57,12 +57,12 @@ class TaskController extends Controller
         return redirect('/events-tasks'); // link to this page
     }
 
-    public function editTasksForm(Task $events){
+    public function editTasksForm(Task $events){  // edit task, load form
 
         return view('forms.editTask', compact('events'));
     }
 
-    public function updateTasks(Request $request, Task $events){ // update
+    public function updateTasks(Request $request, Task $events){ // update task
 
         $this->validate($request,['task_name'=>'required', 'description'=>'required', 'due_date'=>'required|date|date_format:Y-m-d']);
         $events->update($request->all());
@@ -77,10 +77,12 @@ class TaskController extends Controller
         return redirect('/events-tasks');
     }
 
-    public function searchTasks()
+    public function searchTasks()  // search view
     {
         return view('page.taskInformation');
     }
+
+// ajax search but not included as its not fully developed
 
 //    public function autoCompleteSearch(Request $request)
 //    {
@@ -98,7 +100,7 @@ class TaskController extends Controller
 //        return response()->json($data);
 //    }
 
-    public function searchTask(Request $request){
+    public function searchTask(Request $request){  // search method
 
         $this->validate($request,['task_name'=>'required']);
 
@@ -110,10 +112,11 @@ class TaskController extends Controller
                         ->where('user_id', '=', $user)
                         ->get(); // compare with database results
 
-        $tasks = $this->showTasks2();
+        $tasks = $this->showTasks2();  // get tasks object
 
-        $timetable = $this->showTimetable2();
+        $timetable = $this->showTimetable2();  // get tasks object
 
         return view('page.taskInformation')->with('result', $result)->with('tasks',$tasks)->with('timetable',$timetable);
+        // pass multiple arguements to view
     }
 }

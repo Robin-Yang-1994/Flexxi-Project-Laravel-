@@ -22,7 +22,7 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
-    protected function schedule(Schedule $schedule)
+    protected function schedule(Schedule $schedule)  // schedule but not working yet as it requires server or cron implemented
     {
         $schedule->command('send:emails')->everyMinute();
     }
