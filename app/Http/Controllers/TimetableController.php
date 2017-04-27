@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Diaries;
 use Illuminate\Http\Request;
 use App\Timetable;
 use App\Task;
@@ -17,7 +16,9 @@ class TimetableController extends Controller
         $this->naviHref = htmlentities($_SERVER['PHP_SELF']);
     }
 
-    private $dayLabels = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun");
+    private $dayLabels = array("Mon","Tue","Wed","Thu","Fri","Sat","Sun"); // naming labels for each day
+
+    // default values
 
     private $currentYear=0;
 
@@ -32,7 +33,7 @@ class TimetableController extends Controller
     private $naviHref= null;
 
 
-    public function show() {
+    public function show() {  // show content
 
         $year  = null;
 
@@ -111,30 +112,30 @@ class TimetableController extends Controller
 
             $this->currentDate = date('Y-m-d',strtotime($this->currentYear.'-'.$this->currentMonth.'-'.($this->currentDay)));
 
-            $user = Auth::user()->id;
+            $user = Auth::user()->id;   // get current session user id
 
-            $date = $this->currentMonth."-".$this->currentDay;
+            $date = $this->currentMonth."-".$this->currentDay;  // get current month and date
 
-            $task = task::where('user_id', '=', $user)
+            $task = task::where('user_id', '=', $user)           // define task date that matches current date
                           ->where('due_date', 'like', "%$date%")
                           ->get()
-                          ->toArray();
+                          ->toArray();  // convert to array
 
-            foreach ($task as $tasks){
+            foreach ($task as $tasks){   // for each result split using a dash
                 $taskss = $tasks['due_date'];
                 $result = explode('-',$taskss);
             }
 
 
-            if(!empty($task)) {
+            if(!empty($task)) {       // if this is results
 
-                $result = $task[0]['task_name'];
+                $result = $task[0]['task_name'];    // get array result directory 0
                 
                 $cellContent = $this->currentDay.$result; // output event as well as the date
 
-                $this->currentDay++;
+                $this->currentDay++;   // continue populate the month
             }
-            else{
+            else{    // if no result, populte rest of the month
 
                 $cellContent = $this->currentDay;
                 $this->currentDay++;
@@ -149,13 +150,10 @@ class TimetableController extends Controller
         }
 
         return '<li id="li-'.$this->currentDate.'" class="'.($cellNumber%7==1?' start ':($cellNumber%7==0?' end ':' ')).
-            ($cellContent).'">'.$cellContent.'</li>';
+            ($cellContent).'">'.$cellContent.'</li>';  // display the calendar and task name
     }
 
-    /**
-     * create navigation
-     */
-    private function _createNavi(){
+    private function _createNavi(){  // create navigation bar
 
         $nextMonth = $this->currentMonth==12?1:intval($this->currentMonth)+1;
 
@@ -173,10 +171,7 @@ class TimetableController extends Controller
             '</div>';
     }
 
-    /**
-     * create calendar week labels
-     */
-    private function _createLabels(){
+    private function _createLabels(){  // create day
 
         $content='';
 
@@ -190,10 +185,7 @@ class TimetableController extends Controller
     }
 
 
-    /**
-     * calculate number of weeks in a particular month
-     */
-    private function _weeksInMonth($month=null,$year=null){
+    private function _weeksInMonth($month=null,$year=null){  // calculate weeks in month
 
         if( null==($year) ) {
             $year =  date("Y",time());
@@ -221,10 +213,7 @@ class TimetableController extends Controller
         return $numOfweeks;
     }
 
-    /**
-     * calculate number of days in a particular month
-     */
-    private function _daysInMonth($month=null,$year=null){
+    private function _daysInMonth($month=null,$year=null){  // define days in a month
 
         if(null==($year))
             $year =  date("Y",time());
@@ -236,23 +225,20 @@ class TimetableController extends Controller
     }
 
 
-    //end of calendar code
-
-
-    public function showTimetable(){
+    public function showTimetable(){  // show timetable
 
         $user = Auth::user()->id;
         $timetable = Timetable::where('user_id', '=', $user)->get();
 
-        return $timetable;
+        return $timetable;  // return object for task controller
     }
 
-    public function addForm(){
+    public function addForm(){  // add form method
 
         return view('forms.addLesson');
     }
 
-    public function addTimetable(Request $request, Timetable $timetable){
+    public function addTimetable(Request $request, Timetable $timetable){  // add new lessons with requirements and validations
 
         $this->validate($request,['module'=>'required', 'lecturer_name'=>'required', 'location'=>'required',
                                   'time'=>'required|date_format:H:i', 'finish'=>'required|date_format:H:i',

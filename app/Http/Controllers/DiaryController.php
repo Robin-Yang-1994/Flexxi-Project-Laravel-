@@ -10,12 +10,12 @@ class DiaryController extends Controller
 {
     public function updateDiary(Request $request, Diaries $diaries){
 
-        $diaries->update($request->all());
+        $diaries->update($request->all()); // update diary with no validation
         Session::flash('diarySuccess', 'A New Diary Entry Has Been Saved');
         return redirect('/home');
     }
 
-    public function showDiary(){
+    public function showDiary(){ // show diary as default dashboard view according to user id
 
         $user = Auth::user()->id;
 

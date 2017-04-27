@@ -14,7 +14,7 @@ class SendEmails extends Command
      *
      * @var string
      */
-    protected $signature = 'send:emails';
+    protected $signature = 'send:emails'; // artisan active command name
 
     /**
      * The console command description.
@@ -42,22 +42,21 @@ class SendEmails extends Command
     {
         // Looking for messages according to user id and match date
         $event = Task::where('due_date', '>', DATE('now'))
-//                ->orderBy('user_id')
                 ->join('Users', 'Tasks.user_id', '=', 'Users.id')
                 ->orderBy('due_date', 'desc')
                 ->get();
 
-        foreach ($event as $task) {
+        foreach ($event as $task) { // loop to sending emails
 
-            Mail::send('emails.taskNotify',['task_info' => $task], function($message) use($task) {
+            Mail::send('emails.taskNotify',['task_info' => $task], function($message) use($task) { // send email command
 
-                $message->from('NoReplyFlexxi@support.com');
-                $message->to($task['email']);
-                $message->subject($task['task_name']);
+                $message->from('NoReplyFlexxi@support.com'); // email from
+                $message->to($task['email']); // user email
+                $message->subject($task['task_name']); // subject name as task name
             });
         }
 
-        if (Mail::failures()) {
+        if (Mail::failures()) {  // email validation check
             echo 'Mail not sent';
         } else {
             echo 'Mail sent successfully.';
