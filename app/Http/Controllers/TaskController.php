@@ -84,21 +84,27 @@ class TaskController extends Controller
 
 // ajax search but not included as its not fully developed
 
-//    public function autoCompleteSearch(Request $request)
-//    {
-//        $user = Auth::user()->id();
+    public function autoCompleteSearch(Request $request)
+    {
+        //$user = Auth::user()->id();
+
+        $data = Task::select("task_name as name")
+                    ->where("task_name", "LIKE", "%{$request->input('query')}%") // get query data
+                    ->get();
+
+
+//            Task::select("task_name as name")
+//            ->where("task_name", "LIKE", "%{$request->input('query')}%")
+//            ->get();
+
+//        $tasks = $this->showTasks2();  // get tasks object
 //
-//        $data = Task::select("task_name as name")
-//                    ->where("task_name", "LIKE", "%{$request->input('query')}%")
-//                    ->get();
-//
-//
-////            Task::select("task_name as name")
-////            ->where("task_name", "LIKE", "%{$request->input('query')}%")
-////            ->get();
-//
-//        return response()->json($data);
-//    }
+//        $timetable = $this->showTimetable2();  // get tasks object
+
+//        return view('page.taskInformation')->with('result', $result)->with('tasks',$tasks)->with('timetable',$timetable);
+
+        return response()->json($data); // convert data to json
+    }
 
     public function searchTask(Request $request){  // search method
 
